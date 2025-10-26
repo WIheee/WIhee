@@ -1,11 +1,212 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>WebCat</title>
-  </head>
-  <body>	
-    <img src="https://raw.githubusercontent.com/WIheee/WIhee/main/src/1759799083121--2070803525.jpg"/>
-    <a href="https://WIheee.github.io/WIhee/html/test.html">超链接</a>
-  </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WIhee</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: 
+                url('https://raw.githubusercontent.com/WIheee/WIhee/main/src/%E4%BC%8A%E8%95%BE%E5%A8%9C.png.jpeg') 
+                center/cover no-repeat fixed,
+                linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        .content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .box{
+            overflow: hidden;
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.25);
+        }
+        
+        .box .top img{
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .bottom{
+            padding: 20px;
+        }
+        .bottom h1{
+            font-size: 22px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 12px;
+        }
+        .bottom p{
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+        }
+        
+        /* WIhee hello word 变成文章卡片 */
+        .header-card {
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 40px 20px;
+            text-align: center;
+            margin: 40px auto;
+            max-width: 800px;
+        }
+        
+        .header-card h1{
+            font-size: 48px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 16px;
+        }
+        
+        .header-card p{
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+                padding: 20px 16px;
+                gap: 16px;
+            }
+            
+            .header-card {
+                margin: 20px 16px;
+                padding: 30px 20px;
+            }
+            
+            .header-card h1 {
+                font-size: 36px;
+            }
+            
+            .header-card p {
+                font-size: 18px;
+            }
+            
+            .box {
+                border-radius: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- WIhee hello word 变成文章卡片 -->
+    <div class="header-card">
+        <h1>WIhee</h1>
+        <p>hello word</p>
+    </div>
+    
+    <div class="content">
+        <div class="box" onclick="window.open('https://你的网站1.com', '_blank')">
+            <div class="top">
+                <img src="https://raw.githubusercontent.com/WIheee/WIhee/main/src/WIhee%E5%A4%B4%E5%83%8F.png.jpg" alt="项目图片">
+            </div>
+            <div class="bottom">
+                <h1>test</h1>
+                <p>test</p>
+            </div>
+        </div>
+
+        <div class="box" onclick="window.open('https://你的网站2.com', '_blank')">
+            <div class="top">
+                <img src="hello.png" alt="项目图片">
+            </div>
+            <div class="bottom">
+                <h1>项目标题2</h1>
+                <p>项目描述内容项目描述内容项目描述内容项目描述内容项目描述内容项目描述内容</p>
+            </div>
+        </div>
+
+        <div class="box" onclick="window.open('https://你的网站3.com', '_blank')">
+            <div class="top">
+                <img src="hello.png" alt="项目图片">
+            </div>
+            <div class="bottom">
+                <h1>项目标题3</h1>
+                <p>项目描述内容项目描述内容项目描述内容项目描述内容项目描述内容项目描述内容</p>
+            </div>
+        </div>
+
+        <div class="box" onclick="window.open('https://你的网站4.com', '_blank')">
+            <div class="top">
+                <img src="hello.png" alt="项目图片">
+            </div>
+            <div class="bottom">
+                <h1>项目标题4</h1>
+                <p>项目描述内容项目描述内容项目描述内容项目描述内容项目描述内容项目描述内容</p>
+            </div>
+        </div>
+
+        <div class="box" onclick="window.open('https://你的网站5.com', '_blank')">
+            <div class="top">
+                <img src="hello.png" alt="项目图片">
+            </div>
+            <div class="bottom">
+                <h1>项目标题5</h1>
+                <p>项目描述内容项目描述内容项目描述内容项目描述内容项目描述内容项目描述内容</p>
+            </div>
+        </div>
+
+        <div class="box" onclick="window.open('https://你的网站6.com', '_blank')">
+            <div class="top">
+                <img src="hello.png" alt="项目图片">
+            </div>
+            <div class="bottom">
+                <h1>项目标题6</h1>
+                <p>项目描述内容项目描述内容项目描述内容项目描述内容项目描述内容项目描述内容</p>
+            </div>
+        </div>
+
+        <div class="box" onclick="window.open('https://你的网站7.com', '_blank')">
+            <div class="top">
+                <img src="hello.png" alt="项目图片">
+            </div>
+            <div class="bottom">
+                <h1>项目标题7</h1>
+                <p>项目描述内容项目描述内容项目描述内容项目描述内容项目描述内容项目描述内容</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer"></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('博客页面加载完成');
+});
+</script>
+</body>
 </html>
