@@ -1,11 +1,609 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>WebCat</title>
-  </head>
-  <body>	
-    <img src="https://raw.githubusercontent.com/WIheee/WIhee/main/src/1759799083121--2070803525.jpg"/>
-    <a href="https://WIheee.github.io/WIhee/html/test.html">超链接</a>
-  </body>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- =============================== -->
+    <!-- 📝 可修改：网站标题 -->
+    <!-- =============================== -->
+    <title>WIhee | 个人导航页</title>
+    
+    <!-- =============================== -->
+    <!-- 🖼️ 可修改：网站图标 -->
+    <!-- =============================== -->
+    <link rel="icon" href="https://raw.githubusercontent.com/WIheee/WIhee/main/src/%E4%BC%8A%E8%95%BE%E5%A8%9C.png.jpeg" type="image/jpeg">
+    
+    <!-- =============================== -->
+    <!-- 🌐 字体链接 - 不建议修改 -->
+    <!-- =============================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        /* =============================== */
+        /* 🎨 可修改：颜色变量 */
+        /* =============================== */
+        :root {
+            --primary-color: #6366f1;                /* 可修改：主色调 */
+            --primary-dark: #4f46e5;                 /* 可修改：深主色调 */
+            --primary-light: #a5b4fc;                /* 可修改：浅主色调 */
+            
+            --surface: rgba(255, 255, 255, 0.15);      /* 可修改：卡片背景透明度 */
+            --surface-variant: rgba(255, 255, 255, 0.2); /* 可修改：悬停时卡片背景 */
+            --on-surface: rgba(255, 255, 255, 0.95);   /* 可修改：卡片文字颜色 */
+            --on-surface-variant: rgba(255, 255, 255, 0.7); /* 可修改：副文字颜色 */
+            
+            --outline: rgba(255, 255, 255, 0.3);      /* 可修改：边框颜色 */
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);  /* 可修改：阴影效果 */
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.15); /* 可修改：大阴影效果 */
+            
+            --radius-medium: 20px;                    /* 可修改：中等圆角 */
+            --radius-large: 28px;                     /* 可修改：大圆角 */
+            --radius-full: 9999px;                    /* 可修改：完全圆角 */
+        }
+
+        /* =============================== */
+        /* 🌙 可修改：暗色主题变量 */
+        /* =============================== */
+        [data-theme="dark"] {
+            --surface: rgba(0, 0, 0, 0.2);           /* 可修改：暗色主题卡片背景 */
+            --surface-variant: rgba(0, 0, 0, 0.3);   /* 可修改：暗色主题悬停背景 */
+            --on-surface: rgba(255, 255, 255, 0.95); /* 可修改：暗色主题文字颜色 */
+            --on-surface-variant: rgba(255, 255, 255, 0.7); /* 可修改：暗色主题副文字颜色 */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            /* =============================== */
+            /* 🌅 可修改：页面背景（纯背景，无毛玻璃） */
+            /* =============================== */
+            background: 
+                url('https://raw.githubusercontent.com/WIheee/WIhee/main/src/%E4%BC%8A%E8%95%BE%E5%A8%9C.png.jpeg') 
+                center/cover no-repeat fixed,          /* 可修改：背景图片URL和样式 */
+                linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* 可修改：渐变背景 */
+            
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 24px 16px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* =============================== */
+        /* 💎 卡片毛玻璃效果 - 只有卡片有毛玻璃 */
+        /* =============================== */
+        .glass-card {
+            background: var(--surface);
+            backdrop-filter: blur(20px);               /* 可修改：卡片毛玻璃模糊程度 */
+            -webkit-backdrop-filter: blur(20px);       /* Safari支持 */
+            border-radius: var(--radius-large);
+            padding: 32px 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--outline);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-4px);               /* 可修改：悬停时上移距离 */
+            box-shadow: var(--shadow-lg);
+            background: var(--surface-variant);
+        }
+
+        /* =============================== */
+        /* 👤 个人信息区域 */
+        /* =============================== */
+        .profile-section {
+            text-align: center;
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 120px;                              /* 可修改：头像容器宽度 */
+            height: 120px;                             /* 可修改：头像容器高度 */
+            margin: 0 auto 20px;
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: var(--radius-full);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)); /* 可修改：头像渐变背景 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid rgba(255, 255, 255, 0.3); /* 可修改：头像边框 */
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        /* =============================== */
+        /* 🖼️ 可修改：头像图片 */
+        /* =============================== */
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: var(--radius-full);
+        }
+
+        .avatar-fallback {
+            font-size: 48px;                          /* 可修改：头像备用文字大小 */
+            color: white;
+            font-weight: 600;
+        }
+
+        .name {
+            font-size: 32px;                          /* 可修改：名字字体大小 */
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--on-surface);
+        }
+
+        .bio {
+            color: var(--on-surface-variant);
+            font-size: 18px;                          /* 可修改：简介字体大小 */
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.2);     /* 可修改：状态背景 */
+            padding: 8px 16px;                        /* 可修改：状态内边距 */
+            border-radius: var(--radius-full);
+            font-size: 14px;                          /* 可修改：状态文字大小 */
+            color: var(--on-surface);
+            margin-top: 12px;
+            backdrop-filter: blur(10px);              /* 可修改：状态毛玻璃效果 */
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .status-dot {
+            width: 8px;                               /* 可修改：状态点大小 */
+            height: 8px;
+            border-radius: 50%;
+            background: #10b981;                      /* 可修改：状态点颜色 */
+        }
+
+        /* =============================== */
+        /* 🔗 链接区域样式 */
+        /* =============================== */
+        .links-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;                                /* 可修改：链接项间距 */
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            padding: 20px;                            /* 可修改：链接项内边距 */
+            background: var(--surface-variant);
+            border-radius: var(--radius-medium);
+            text-decoration: none;
+            color: var(--on-surface);
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            backdrop-filter: blur(15px);              /* 可修改：链接卡片毛玻璃效果 */
+            -webkit-backdrop-filter: blur(15px);
+        }
+
+        .link-item:hover {
+            background: rgba(255, 255, 255, 0.25);    /* 可修改：链接悬停背景 */
+            border-color: var(--primary-color);       /* 可修改：链接悬停边框颜色 */
+            transform: translateX(8px);               /* 可修改：链接悬停移动距离 */
+        }
+
+        .link-item:active {
+            transform: scale(0.98);                   /* 可修改：链接点击缩放效果 */
+        }
+
+        .link-icon {
+            width: 48px;                              /* 可修改：图标容器大小 */
+            height: 48px;
+            border-radius: var(--radius-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;                       /* 可修改：图标右边距 */
+            flex-shrink: 0;
+        }
+
+        .link-icon .material-icons {
+            color: white;
+            font-size: 24px;                          /* 可修改：图标大小 */
+        }
+
+        .link-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .link-title {
+            font-weight: 600;
+            font-size: 18px;                          /* 可修改：链接标题字体大小 */
+            margin-bottom: 4px;
+            color: var(--on-surface);
+        }
+
+        .link-desc {
+            font-size: 14px;                          /* 可修改：链接描述字体大小 */
+            color: var(--on-surface-variant);
+        }
+
+        .link-arrow {
+            color: var(--outline);
+            margin-left: 12px;                        /* 可修改：箭头左边距 */
+            transition: all 0.3s ease;
+        }
+
+        .link-item:hover .link-arrow {
+            transform: translateX(4px);               /* 可修改：箭头悬停移动距离 */
+            color: var(--primary-color);
+        }
+
+        /* =============================== */
+        /* 📝 区域标题样式 */
+        /* =============================== */
+        .section-title {
+            font-size: 24px;                          /* 可修改：区域标题字体大小 */
+            font-weight: 700;
+            margin-bottom: 24px;                      /* 可修改：区域标题下边距 */
+            text-align: center;
+            color: var(--on-surface);
+            position: relative;
+            padding-bottom: 12px;                     /* 可修改：区域标题下内边距 */
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;                              /* 可修改：下划线宽度 */
+            height: 3px;                              /* 可修改：下划线高度 */
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-dark)); /* 可修改：下划线渐变 */
+            border-radius: 2px;
+        }
+
+        /* =============================== */
+        /* 🦶 页脚样式 */
+        /* =============================== */
+        .footer {
+            text-align: center;
+            padding-top: 20px;                        /* 可修改：页脚上内边距 */
+            border-top: 1px solid var(--outline);
+            color: var(--on-surface-variant);
+            font-size: 14px;                          /* 可修改：页脚文字大小 */
+        }
+
+        /* =============================== */
+        /* 🎛️ 主题切换按钮 */
+        /* =============================== */
+        .theme-toggle {
+            position: fixed;
+            top: 24px;                                /* 可修改：按钮上边距 */
+            right: 24px;                              /* 可修改：按钮右边距 */
+            width: 52px;                              /* 可修改：按钮宽度 */
+            height: 52px;                             /* 可修改：按钮高度 */
+            border-radius: var(--radius-full);
+            background: var(--surface);
+            border: 1px solid var(--outline);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            backdrop-filter: blur(20px);              /* 可修改：按钮毛玻璃效果 */
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);                    /* 可修改：按钮悬停缩放 */
+            background: var(--primary-color);         /* 可修改：按钮悬停背景色 */
+            color: white;
+        }
+
+        /* =============================== */
+        /* 📱 响应式设计 */
+        /* =============================== */
+        @media (max-width: 600px) {
+            body {
+                padding: 16px 12px;                   /* 可修改：移动端页面内边距 */
+            }
+            
+            .glass-card {
+                padding: 24px 20px;                   /* 可修改：移动端卡片内边距 */
+            }
+            
+            .avatar-container {
+                width: 100px;                         /* 可修改：移动端头像大小 */
+                height: 100px;
+            }
+            
+            .name {
+                font-size: 28px;                      /* 可修改：移动端名字字体大小 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- =============================== -->
+    <!-- 🎛️ 主题切换按钮 -->
+    <!-- =============================== -->
+    <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
+        <span class="material-icons">dark_mode</span>
+    </button>
+
+    <div class="container">
+        <!-- =============================== -->
+        <!-- 👤 个人信息卡片 - 有毛玻璃效果 -->
+        <!-- =============================== -->
+        <div class="glass-card profile-section">
+            <div class="avatar-container">
+                <div class="avatar">
+                    <!-- =============================== -->
+                    <!-- 🖼️ 可修改：头像图片URL -->
+                    <!-- =============================== -->
+                    <img src="https://raw.githubusercontent.com/WIheee/WIhee/main/src/WIhee%E5%A4%B4%E5%83%8F.png.jpg" 
+                         alt="WIhee" 
+                         id="avatarImage"
+                         onerror="this.style.display='none'; document.getElementById('avatarFallback').style.display='flex';">
+                    <div class="avatar-fallback" id="avatarFallback" style="display: none;">W</div>
+                </div>
+            </div>
+            
+            <!-- =============================== -->
+            <!-- 📝 可修改：姓名 -->
+            <!-- =============================== -->
+            <h1 class="name">WIhee</h1>
+            
+            <!-- =============================== -->
+            <!-- 📝 可修改：个人简介 -->
+            <!-- =============================== -->
+            <p class="bio">开发者 & 懒懒虫</p>
+            
+            <!-- =============================== -->
+            <!-- 📝 可修改：状态文字 -->
+            <!-- =============================== -->
+            <div class="status">
+                <div class="status-dot"></div>
+                <span>无聊中...</span>
+            </div>
+        </div>
+
+        <!-- =============================== -->
+        <!-- 🔗 主要链接区域 - 卡片有毛玻璃 -->
+        <!-- =============================== -->
+        <div class="glass-card">
+            <h2 class="section-title">我的链接</h2>
+            <div class="links-grid">
+                <!-- =============================== -->
+                <!-- 🔗 可修改：GitHub链接 -->
+                <!-- =============================== -->
+                <a href="https://github.com/WIheee" class="link-item" target="_blank" rel="noopener">
+                    <div class="link-icon">
+                        <span class="material-icons">code</span>
+                    </div>
+                    <div class="link-content">
+                        <!-- =============================== -->
+                        <!-- 📝 可修改：链接标题 -->
+                        <!-- =============================== -->
+                        <div class="link-title">GitHub</div>
+                        
+                        <!-- =============================== -->
+                        <!-- 📝 可修改：链接描述 -->
+                        <!-- =============================== -->
+                        <div class="link-desc">查看我的开源项目和代码</div>
+                    </div>
+                    <span class="material-icons link-arrow">arrow_forward</span>
+                </a>
+
+                <!-- =============================== -->
+                <!-- 🔗 可修改：博客链接 -->
+                <!-- =============================== -->
+                <a href="https://blog.wihee.com" class="link-item" target="_blank" rel="noopener">
+                    <div class="link-icon">
+                        <span class="material-icons">article</span>
+                    </div>
+                    <div class="link-content">
+                        <!-- =============================== -->
+                        <!-- 📝 可修改：链接标题 -->
+                        <!-- =============================== -->
+                        <div class="link-title">博客</div>
+                        
+                        <!-- =============================== -->
+                        <!-- 📝 可修改：链接描述 -->
+                        <!-- =============================== -->
+                        <div class="link-desc">一个专门用来闲聊的博客</div>
+                    </div>
+                    <span class="material-icons link-arrow">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- =============================== -->
+        <!-- 💼 项目展示区域 - 卡片有毛玻璃 -->
+        <!-- =============================== -->
+        <div class="glass-card">
+            <h2 class="section-title">项目作品</h2>
+            <div class="links-grid">
+                <!-- =============================== -->
+                <!-- 🔗 可修改：作品集链接 -->
+                <!-- =============================== -->
+                <a href="https://github.com/WIheee" class="link-item" target="_blank" rel="noopener">
+                    <div class="link-icon">
+                        <span class="material-icons">folder</span>
+                    </div>
+                    <div class="link-content">
+                        <!-- =============================== -->
+                        <!-- 📝 可修改：链接标题 -->
+                        <!-- =============================== -->
+                        <div class="link-title">作品集</div>
+                        
+                        <!-- =============================== -->
+                        <!-- 📝 可修改：链接描述 -->
+                        <!-- =============================== -->
+                        <div class="link-desc">展示我的开源项目</div>
+                    </div>
+                    <span class="material-icons link-arrow">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- =============================== -->
+        <!-- 📞 联系信息区域 - 卡片有毛玻璃 -->
+        <!-- =============================== -->
+        <div class="glass-card">
+            <h2 class="section-title">联系我</h2>
+            <div class="links-grid">
+                <!-- =============================== -->
+                <!-- 📧 可修改：邮箱地址 -->
+                <!-- =============================== -->
+               <a href="https://b23.tv/vrOc7ce" class="link-item" target="_blank" rel="noopener">
+    <div class="link-icon">
+        <span class="material-icons">smart_display</span>
+    </div>
+    <div class="link-content">
+        <div class="link-title">Bilbil</div>
+        <div class="link-desc">UID:1310396061</div>
+    </div>
+    <span class="material-icons link-arrow">arrow_forward</span>
+</a>
+                 <div class="link-item" id="copyQQ" style="cursor: pointer;">
+    <div class="link-icon">
+        <span class="material-icons">groups</span>
+    </div>
+    <div class="link-content">
+        <div class="link-title">QQ</div>
+        <div class="link-desc">3590210535 点击复制</div>
+    </div>
+    <span class="material-icons link-arrow">content_copy</span>
+</div>
+                <a href="mailto:bywihee@outlook.com" class="link-item">
+                    <div class="link-icon">
+                        <span class="material-icons">email</span>
+                    </div>
+                    <div class="link-content">
+                        <!-- =============================== -->
+                        <!-- 📝 可修改：链接标题 -->
+                        <!-- =============================== -->
+                        <div class="link-title">电子邮件</div>
+                        
+                        <!-- =============================== -->
+                        <!-- 📝 可修改：邮箱地址显示 -->
+                        <!-- =============================== -->
+                        <div class="link-desc"></div>
+                    </div>
+                    
+                    <span class="material-icons link-arrow">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- =============================== -->
+        <!-- 🦶 页脚信息 - 卡片有毛玻璃 -->
+        <!-- =============================== -->
+        <div class="glass-card">
+            <div class="footer">
+                <!-- =============================== -->
+                <!-- 📝 可修改：页脚版权信息 -->
+                <!-- =============================== -->
+                <p>© 2025 WIhee · 很高兴遇见你</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===============================
+        // 🎨 主题切换功能
+        // ===============================
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        if (savedTheme === 'dark') {
+            html.setAttribute('data-theme', 'dark');
+            themeToggle.innerHTML = '<span class="material-icons">light_mode</span>';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                html.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                themeToggle.innerHTML = '<span class="material-icons">dark_mode</span>';
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggle.innerHTML = '<span class="material-icons">light_mode</span>';
+            }
+        });
+
+        // ===============================
+        // 🖼️ 图片加载错误处理
+        // ===============================
+        const avatarImage = document.getElementById('avatarImage');
+        if (avatarImage) {
+            avatarImage.addEventListener('error', function() {
+                this.style.display = 'none';
+                document.getElementById('avatarFallback').style.display = 'flex';
+            });
+        }
+        // QQ复制功能
+document.getElementById('copyQQ').addEventListener('click', function() {
+    const qqNumber = '3590210535';
+    
+    // 方法1：使用现代Clipboard API
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(qqNumber).then(() => {
+            alert('QQ号 ' + qqNumber + ' 已复制到剪贴板！');
+        }).catch(err => {
+            fallbackCopy(qqNumber);
+        });
+    } else {
+        // 方法2：老式复制方法
+        fallbackCopy(qqNumber);
+    }
+    
+    function fallbackCopy(text) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.opacity = '0';
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            alert('QQ号 ' + text + ' 已复制到剪贴板！');
+        } catch (err) {
+            alert('复制失败，请手动复制：' + text);
+        }
+        document.body.removeChild(textArea);
+    }
+});
+    </script>
+</body>
 </html>
